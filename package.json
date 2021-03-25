@@ -27,11 +27,12 @@
     "convert-excel-to-json": "^1.7.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
-    "date-fns": "^2.17.0",
+    "date-fns": "^2.19.0",
     "debug": "^4.3.1",
     "dotenv": "^8.2.0",
     "exceljs": "^4.2.1",
     "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
     "express-useragent": "^1.0.15",
     "googleapis": "^68.0.0",
     "helmet": "^4.4.1",
@@ -48,7 +49,8 @@
     "request-ip": "^2.1.3",
     "swagger-jsdoc": "^6.0.2",
     "swagger-ui-express": "^4.1.6",
-    "winston": "^3.3.3"
+    "winston": "^3.3.3",
+    "yup": "0.31.0"
   },
   "devDependencies": {
     "@types/convert-excel-to-json": "^1.7.0",
@@ -67,20 +69,21 @@
     "@types/nodemailer-mailgun-transport": "^1.4.2",
     "@types/redis": "^2.8.28",
     "@types/request-ip": "^0.0.35",
-    "@typescript-eslint/eslint-plugin": "^4.15.0",
-    "@typescript-eslint/parser": "^4.15.0",
-    "eslint": "^7.20.0",
+    "@types/yup": "^0.29.9",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "eslint": "^7.22.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "^7.2.0",
+    "eslint-config-prettier": "^8.1.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-import-resolver-babel-module": "^5.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.3.1",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
-    "standard-version": "^9.1.0",
+    "standard-version": "^9.1.1",
     "ts-node": "^9.1.1",
-    "typescript": "^4.1.5"
+    "typescript": "^4.2.3"
   },
   "engines": {
     "node": ">=12.x"
