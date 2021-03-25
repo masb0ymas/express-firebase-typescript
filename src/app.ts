@@ -1,11 +1,17 @@
 import createError from 'http-errors'
 import express, { NextFunction, Request, Response } from 'express'
 import path from 'path'
+import cors from 'cors'
+import hpp from 'hpp'
+import helmet from 'helmet'
 import logger from 'morgan'
+import requestIp from 'request-ip'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
+import userAgent from 'express-useragent'
 import indexRouter from '@routes/index'
 import winstonLogger, { winstonStream } from '@config/winston'
+import ExpressRateLimit from '@middlewares/ExpressRateLimit'
 
 const GenerateDoc = require('@utils/GenerateDocs')
 
@@ -15,11 +21,18 @@ const app = express()
 app.set('views', path.join(`${__dirname}/../`, 'views'))
 app.set('view engine', 'pug')
 
+app.use(helmet())
+app.use(cors())
 app.use(logger('combined', { stream: winstonStream }))
 app.use(bodyParser.json({ limit: '100mb', type: 'application/json' }))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(`${__dirname}/../`, 'public')))
+
+app.use(hpp())
+app.use(userAgent.express())
+app.use(requestIp.mw())
+app.use(ExpressRateLimit)
 
 // Initial Docs Swagger
 GenerateDoc(app)
