@@ -10,9 +10,11 @@ import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import userAgent from 'express-useragent'
 import indexRouter from '@routes/index'
+import withState from '@helpers/withState'
 import winstonLogger, { winstonStream } from '@config/winston'
 import ExpressRateLimit from '@middlewares/ExpressRateLimit'
-import withState from '@helpers/withState'
+import ExpressErrorYup from '@middlewares/ExpressErrorYup'
+import ExpressErrorResponse from '@middlewares/ExpressErrorResponse'
 
 const GenerateDoc = require('@utils/GenerateDocs')
 
@@ -44,6 +46,9 @@ app.use((req: Request, res, next) => {
 GenerateDoc(app)
 
 app.use(indexRouter)
+
+app.use('/v1', ExpressErrorYup)
+app.use('/v1', ExpressErrorResponse)
 
 // catch 404 and forward to error handler
 app.use(function (req: Request, res: Response, next: NextFunction) {
