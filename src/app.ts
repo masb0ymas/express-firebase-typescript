@@ -12,6 +12,7 @@ import userAgent from 'express-useragent'
 import indexRouter from '@routes/index'
 import winstonLogger, { winstonStream } from '@config/winston'
 import ExpressRateLimit from '@middlewares/ExpressRateLimit'
+import withState from '@helpers/withState'
 
 const GenerateDoc = require('@utils/GenerateDocs')
 
@@ -33,6 +34,11 @@ app.use(hpp())
 app.use(userAgent.express())
 app.use(requestIp.mw())
 app.use(ExpressRateLimit)
+
+app.use((req: Request, res, next) => {
+  new withState(req)
+  next()
+})
 
 // Initial Docs Swagger
 GenerateDoc(app)
