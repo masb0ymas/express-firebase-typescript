@@ -1,4 +1,4 @@
-import BaseResponse from './BaseResponse'
+import BaseResponse from '@modules/Errors/BaseResponse'
 
 class Forbidden extends BaseResponse {
   constructor(message: string) {
