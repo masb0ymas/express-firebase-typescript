@@ -1,5 +1,5 @@
 import createError from 'http-errors'
-import express, { NextFunction, Request, Response } from 'express'
+import express, { Request, Response, NextFunction } from 'express'
 import path from 'path'
 import cors from 'cors'
 import hpp from 'hpp'
@@ -9,14 +9,15 @@ import requestIp from 'request-ip'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import userAgent from 'express-useragent'
-import indexRouter from '@routes/index'
-import withState from '@helpers/withState'
-import winstonLogger, { winstonStream } from '@config/winston'
-import ExpressRateLimit from '@middlewares/ExpressRateLimit'
-import ExpressErrorYup from '@middlewares/ExpressErrorYup'
-import ExpressErrorResponse from '@middlewares/ExpressErrorResponse'
+import indexRouter from 'routes'
+import withState from 'helpers/withState'
+import ExpressErrorYup from 'middlewares/ExpressErrorYup'
+import ExpressErrorResponse from 'middlewares/ExpressErrorResponse'
+import winstonLogger, { winstonStream } from 'config/winston'
+import initialJobs from 'jobs'
+import ExpressRateLimit from 'middlewares/ExpressRateLimit'
 
-const GenerateDoc = require('@utils/GenerateDocs')
+const GenerateDoc = require('utils/GenerateDocs')
 
 const app = express()
 
@@ -45,7 +46,11 @@ app.use((req: Request, res, next) => {
 // Initial Docs Swagger
 GenerateDoc(app)
 
+// Initial Route
 app.use(indexRouter)
+
+// Initial Jobs
+initialJobs()
 
 app.use('/v1', ExpressErrorYup)
 app.use('/v1', ExpressErrorResponse)
