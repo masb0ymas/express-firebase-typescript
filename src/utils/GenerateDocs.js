@@ -2,7 +2,7 @@ import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUI from 'swagger-ui-express'
 import fs from 'fs'
 import _path from 'path'
-import { BASE_URL_SERVER } from '@config/baseURL'
+import { BASE_URL_SERVER } from 'config/baseURL'
 import _ from 'lodash'
 
 const {
