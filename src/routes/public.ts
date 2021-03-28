@@ -4,4 +4,5 @@ const router = express.Router()
 
 export default router
 
-// List import routes
+// Route List
+require('controllers/Role/controller')

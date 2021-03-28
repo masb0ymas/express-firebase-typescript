@@ -1,14 +1,15 @@
-import BuildResponse from '@modules/Response/BuildResponse'
+import { BASE_URL_SERVER } from 'config/baseURL'
 import express, { Request, Response, NextFunction } from 'express'
-import { BASE_URL_SERVER } from '@config/baseURL'
-import ResponseError from '@modules/Response/ResponseError'
-import publicRoute from '@routes/public'
+import BuildResponse from 'modules/Response/BuildResponse'
+import ResponseError from 'modules/Response/ResponseError'
+import publicRoute from 'routes/public'
 
 const router = express.Router()
-/* GET home page. */
+
+/* Home Page. */
 router.get('/', function (req: Request, res: Response, next: NextFunction) {
   const buildResponse = BuildResponse.get({
-    message: 'Express Firebase TypeScript',
+    message: 'Express TypeScript',
     maintaner: 'masb0ymas, <n.fajri@outlook.com>',
     source: 'https://github.com/masb0ymas/express-firebase-typescript',
     docs: `${BASE_URL_SERVER}/v1/api-docs`,
