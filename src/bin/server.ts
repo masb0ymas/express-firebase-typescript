@@ -5,6 +5,8 @@ import '../pathAlias'
 
 import fs from 'fs'
 import path from 'path'
+import firebase from 'firebase'
+import initialDB from '@config/firebase'
 
 const pathEnv = path.resolve('.env')
 
@@ -19,8 +21,11 @@ if (!fs.existsSync(pathEnv)) {
  */
 
 const http = require('http')
-const debug = require('debug')('express-docs-typescript:server')
+const debug = require('debug')('express-firebase-typescript:server')
 const app = require('../app')
+
+// Initial DB
+firebase.initializeApp(initialDB)
 
 /**
  * Normalize a port into a number, string, or false.
