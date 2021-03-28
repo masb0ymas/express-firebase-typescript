@@ -1,12 +1,8 @@
 #!/usr/bin/env node
-
-import 'module-alias/register'
-import '../pathAlias'
-
+import initialDB from 'config/firebase'
+import firebase from 'firebase'
 import fs from 'fs'
 import path from 'path'
-import firebase from 'firebase'
-import initialDB from '@config/firebase'
 
 const pathEnv = path.resolve('.env')
 
@@ -20,11 +16,15 @@ if (!fs.existsSync(pathEnv)) {
  * Module dependencies.
  */
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+require('@babel/register')({ extensions: ['.js', '.ts'] })
 const http = require('http')
 const debug = require('debug')('express-firebase-typescript:server')
 const app = require('../app')
 
-// Initial DB
+/**
+ * Initial Connection Database
+ */
 firebase.initializeApp(initialDB)
 
 /**

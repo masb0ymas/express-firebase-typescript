@@ -1,4 +1,4 @@
-import { formatDate } from '@helpers/Date'
+import { formatDate } from 'helpers/Date'
 import path from 'path'
 import winston from 'winston'
 
