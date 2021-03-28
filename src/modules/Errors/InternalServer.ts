@@ -1,4 +1,4 @@
-import BaseResponse from '@modules/Errors/BaseResponse'
+import BaseResponse from './BaseResponse'
 
 class InternalServer extends BaseResponse {
   constructor(message: string) {
